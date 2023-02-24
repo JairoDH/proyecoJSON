@@ -10,7 +10,7 @@ def menu():
     print("Menu: ")
     print("1. Información de personajes: ")
     print("2. Habilidades del personaje: ")
-    print("3. ")
+    print("3. Dime una habilidad: ")
     print("4. ")
     print("5. ")
     print("6. Salir")
@@ -30,4 +30,11 @@ def habilidades_personajes(personajes):
         if personaje['id'] == dato:
             print("Las habilidades de: ",personaje['id'], "son, ",personaje['abilities'])
 
+def pedir_habilidad(personajes):
+    habilidad = input("Dime el nombre de la habilidad: ")
+    poder = []
+    for personaje in personajes['characters']:
+        if personaje['abilities'] == habilidad:
+            poder.append(personaje['abilities'])
+            print("personaje con dicha habilidad: ", poder)
 
