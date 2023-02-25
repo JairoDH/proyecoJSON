@@ -1,2 +1,2 @@
-# proyecoJSON
-Proyeco Json
+# proyectoJSON
+Proyecto Json

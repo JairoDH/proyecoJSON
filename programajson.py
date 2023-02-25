@@ -10,4 +10,6 @@ while opcion != 6 :
         habilidades_personajes(personajes)
     elif opcion == 3:
         pedir_habilidad(personajes)
+    elif opcion == 4:
+        pedir_nivelKi(personajes)
     opcion = menu()

@@ -11,7 +11,7 @@ def menu():
     print("1. Información de personajes: ")
     print("2. Habilidades del personaje: ")
     print("3. Dime una habilidad: ")
-    print("4. ")
+    print("4. Poder Ki: ")
     print("5. ")
     print("6. Salir")
     opcion = int(input("Selecciona una opcion: "))
@@ -25,9 +25,9 @@ def listar_personajes(personajes):
         print()
 
 def habilidades_personajes(personajes):
-    dato = input("Dime el nombre del pesonaje: ")
+    nombre = input("Dime el nombre del pesonaje: ")
     for personaje in personajes['characters']:
-        if personaje['id'] == dato:
+        if personaje['id'] == nombre:
             print("Las habilidades de: ",personaje['id'], "son, ",personaje['abilities'])
 
 def pedir_habilidad(personajes):
@@ -46,3 +46,15 @@ def pedir_habilidad(personajes):
         print(f"Habilidades: {','.join(p['habilidades'])}")
         print()
 
+def pedir_nivelKi(personajes):
+    ki = input("Cuánto poder KI quieres ver (nn):  ")
+    poderki = []
+    for personaje in personajes['characters']:
+        if personaje['kiRestoreSpeed'] >= ki:
+            poderki.append(personaje)
+    if not poderki:
+        print("No hay personaje con ese nivel de ki")
+    else:
+        print("Personajes con nivel superior o igual al ki: ")
+        for personaje in poderki:
+            print(f" - {personaje['name']} ({personaje['kiRestoreSpeed']})")
