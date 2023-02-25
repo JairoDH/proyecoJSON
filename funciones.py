@@ -34,7 +34,15 @@ def pedir_habilidad(personajes):
     habilidad = input("Dime el nombre de la habilidad: ")
     poder = []
     for personaje in personajes['characters']:
-        if personaje['abilities'] == habilidad:
-            poder.append(personaje['abilities'])
-            print("personaje con dicha habilidad: ", poder)
+        if habilidad in personaje['abilities']:
+            poder.append({
+                'nombre': personaje['id'],
+                'genero': personaje['gender'],
+                'habilidades': personaje['abilities']})
+    print(f"personaje con dicha habilidad '{habilidad}':")
+    for p in poder:
+        print(f"Nombre: {p['nombre']}")
+        print(f"Género: {p['genero']}") 
+        print(f"Habilidades: {','.join(p['habilidades'])}")
+        print()
 
