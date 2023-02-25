@@ -12,7 +12,7 @@ def menu():
     print("2. Habilidades del personaje: ")
     print("3. Dime una habilidad: ")
     print("4. Poder Ki: ")
-    print("5. ")
+    print("5. Combates.")
     print("6. Salir")
     opcion = int(input("Selecciona una opcion: "))
     return opcion
@@ -38,11 +38,13 @@ def pedir_habilidad(personajes):
             poder.append({
                 'nombre': personaje['id'],
                 'genero': personaje['gender'],
+                'raza'  : personaje['race'],
                 'habilidades': personaje['abilities']})
     print(f"personaje con dicha habilidad '{habilidad}':")
     for p in poder:
         print(f"Nombre: {p['nombre']}")
-        print(f"Género: {p['genero']}") 
+        print(f"Género: {p['genero']}")
+        print(f"Raza: {p['raza']}")
         print(f"Habilidades: {','.join(p['habilidades'])}")
         print()
 
@@ -58,3 +60,40 @@ def pedir_nivelKi(personajes):
         print("Personajes con nivel superior o igual al ki: ")
         for personaje in poderki:
             print(f" - {personaje['name']} ({personaje['kiRestoreSpeed']})")
+
+def combate_personajes(personajes):
+    personaje1 = input("Dime el primer oponente: ")
+    personaje2 = input("Dime el segundo oponente: ")
+
+    oponentes = []
+    personaje1_encontrado = False
+    personaje2_encontrado = False
+    for personaje in personajes['characters']:
+        if personaje1 == personaje['id']:
+            oponentes.append(personaje)
+            personaje1_encontrado = True
+        if personaje2 == personaje['id']:    
+            oponentes.append(personaje)
+            personaje2_encontrado = True
+    if not personaje1_encontrado:
+        print("Primer personaje no encontrado")
+    if not personaje2_encontrado:
+        print("Segundo personaje no encontrado")
+
+    ganador = None
+    
+    for estadistica in ['health','attack','defense']:
+        if oponentes[0][estadistica] > oponentes[1][estadistica]:
+            ganador = oponentes[0]
+            
+        elif oponentes[0][estadistica] < oponentes[1][estadistica]:
+            ganador = oponentes[1]
+    
+        else: 
+            print(f"Es un empate en{estadistica}!")
+    if ganador is not None:
+        print(f"El ganador es {ganador['name']} con {ganador['health']} de salud, {ganador['attack']} puntos de ataque y {ganador['defense']} de defensa!!")   
+    
+
+    
+        
